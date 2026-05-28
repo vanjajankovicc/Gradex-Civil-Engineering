@@ -1,0 +1,18 @@
+# Zavisnosti i Build fajlovi (Frontend i Backend)
+**/node_modules/
+**/bin/
+**/obj/
+**/dist/
+**/build/
+
+# Editori i okruženja
+**/.vs/
+**/.idea/
+**/.vscode/
+
+# Privatne tajne i konfiguracije
+**.env
+**/appsettings.Development.json
+
+# Logovi
+*.log

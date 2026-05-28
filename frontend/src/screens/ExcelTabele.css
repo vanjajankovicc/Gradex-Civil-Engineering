@@ -1,0 +1,6 @@
+.excel-container { padding: 30px; max-width: 1200px; margin: 0 auto; }
+.excel-form { background: #f8f9fa; border: 1px solid #d0d7de; padding: 20px; border-radius: 6px; margin-bottom: 25px; }
+.excel-table { width: 100%; border-collapse: collapse; background: white; }
+.excel-table th { background: #002b36; color: white; padding: 12px 15px; }
+.excel-table td { padding: 12px 15px; border-bottom: 1px solid #eef1f4; }
+.excel-input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }

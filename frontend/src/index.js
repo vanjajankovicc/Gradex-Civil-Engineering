@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DokumentacijaScreen from './screens/DokumentacijaScreen.jsx';
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -17,16 +19,30 @@ import LoginScreen from './screens/LoginScreen.jsx';
 import ProjectDetailsScreen from './screens/ProjectDetailsScreen.jsx';
 import NewTaskScreen from './screens/NewTaskScreen.jsx';
 
+// Novi inženjerski ekrani
+import DinamikaRadova from './screens/DinamikaRadova.jsx';
+import ProcenaStatistika from './screens/ProcenaStatistika.jsx';
+import KalkulatorMaterijala from './screens/KalkulatorMaterijala.jsx';
+import ExcelTabele from './screens/ExcelTabele.jsx';
+
 // Zaštita ruta (Components)
 import PrivateRoute from './components/PrivateRoute.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      {/* Javne rute */}
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       
-      {/* Zaštitne rute za ulogovane inženjere i admine */}
+      {/* Nove inženjerske rute */}
+      <Route path="/dinamika" element={<DinamikaRadova />} />
+      <Route path="/procentualna-procena" element={<ProcenaStatistika />} />
+      <Route path="/kalkulator" element={<KalkulatorMaterijala />} />
+      <Route path="/tabele" element={<ExcelTabele />} />
+      <Route path="/dokumentacija" element={<DokumentacijaScreen />} />
+      
+      {/* Zaštitne rute */}
       <Route path="" element={<PrivateRoute />}>
         <Route path="/project/:id" element={<ProjectDetailsScreen />} />
         <Route path="/project/:id/new-task" element={<NewTaskScreen />} />

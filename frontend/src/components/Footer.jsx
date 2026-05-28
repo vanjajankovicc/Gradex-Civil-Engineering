@@ -1,16 +1,19 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () => {
   return (
-    <footer className="bg-light border-top mt-5">
-      <Container>
-        <Row>
-          <Col className="text-center py-3 text-muted">
-            Gradex &copy; {new Date().getFullYear()} — Sistem za upravljanje građevinskim projektima
-          </Col>
-        </Row>
-      </Container>
+    <footer style={{
+      backgroundColor: '#002b36',
+      color: '#00bfa5',
+      textAlign: 'center',
+      padding: '15px 0',
+      fontSize: '14px',
+      fontWeight: '600',
+      letterSpacing: '1px',
+      borderTop: '2px solid #00bfa5',
+      marginTop: 'auto' /* Gura footer na dno ekrana */
+    }}>
+      © 2026 GRADEX CIVIL ENGINEERING SYSTEM | Sva prava zadržana.
     </footer>
   );
 };

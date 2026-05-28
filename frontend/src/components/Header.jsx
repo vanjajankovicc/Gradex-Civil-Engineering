@@ -1,89 +1,70 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, Container, Button, Modal } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { logout } from '../slices/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import HeaderKalkulator from './HeaderKalkulator';
+import './Header.css';
 
-const Header = () => {
-  const { userInfo } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+const Header = ({ username, onLogout }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [calcOpen, setCalcOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Stanje koje kontroliše da li je prozorčić (Modal) otvoren ili zatvoren
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-
-  // Otvori prozorčić kada korisnik klikne na crveno dugme Odjava
-  const handleShow = () => setShowLogoutModal(true);
-  
-  // Zatvori prozorčić ako korisnik odustane
-  const handleClose = () => setShowLogoutModal(false);
-
-  // Ako korisnik potvrdi da želi da se odjavi
-  const logoutHandler = () => {
-    handleClose(); // Zatvaramo prozor
-    dispatch(logout()); // Čistimo stanje u Reduxu
-    navigate('/login'); // Vraćamo ga na login
-  };
-
   return (
-    <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
-        <Container>
-          <LinkContainer to="/">
-            <Navbar.Brand>🏗️ Gradex</Navbar.Brand>
-          </LinkContainer>
-          
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <LinkContainer to="/">
-                <Nav.Link>Projekti</Nav.Link>
-              </LinkContainer>
-            </Nav>
-            
-            <Nav className="ms-auto align-items-center">
-              {userInfo && (
-                <span className="text-light me-3" style={{ fontSize: '0.9rem' }}>
-                  👤 {userInfo.name}
-                </span>
-              )}
+    <header className="engineering-navbar">
+      <div className="nav-top-layer">
+        
+        {/* LOGO I BREND */}
+        <div className="nav-brand" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+          <div className="logo-icon">G</div>
+          <div className="brand-texts">
+            <h1 className="main-title">GRADEX</h1>
+            <p className="sub-title">CIVIL ENGINEERING SYSTEM</p>
+          </div>
+        </div>
 
-              <LinkContainer to="/login" className="me-2">
-                <Nav.Link>Prijava</Nav.Link>
-              </LinkContainer>
+        {/* NAVIGACIJA */}
+        <nav className="nav-links">
+          <div 
+            className="nav-item-wrapper"
+            onMouseEnter={() => setDropdownOpen(true)}
+            onMouseLeave={() => setDropdownOpen(false)}
+          >
+            <span className="nav-link-main">PROJEKTI ▼</span>
+            {dropdownOpen && (
+              <div className="engineering-dropdown">
+                <Link to="/dinamika" className="drop-item">RADOVA</Link>
+                <Link to="/procentualna-procena" className="drop-item">PROCENA I STATISTIKA</Link>
+                <Link to="/kalkulator" className="drop-item">MATERIJAL KALKULATOR</Link>
+                <Link to="/tabele" className="drop-item">EXCEL TABELE UNOSA</Link>
+              </div>
+            )}
+          </div>
+          <Link to="/dokumentacija" className="nav-link-main">DOKUMENTACIJA</Link>
+        </nav>
 
-              {/* Klik na ovo dugme sada samo otvara prozorčić, ne odjavljuje odmah */}
-              <Button 
-                variant="outline-danger" 
-                size="sm" 
-                onClick={handleShow}
-                style={{ borderRadius: '5px' }}
-              >
-                Odjava
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        {/* AUTENTIFIKACIJA I KALKULATOR */}
+        <div className="nav-auth">
+          <button 
+            className="btn-kalkulator-trigger"
+            onClick={() => setCalcOpen(true)}
+          >
+            KALKULATOR
+          </button>
 
-      {/* Tvoj mali prozorčić (Modal) za potvrdu odjave */}
-      <Modal show={showLogoutModal} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Odjava sa sistema</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Da li ste sigurni da želite da se odjavite sa Gradex sistema?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Odustani
-          </Button>
-          <Button variant="danger" onClick={logoutHandler}>
-            Da, odjavi me
-          </Button>
-        </Modal.Footer>
-      </Modal>
+          {username ? (
+            <div className="user-section">
+              <span className="user-welcome">Inženjer: {username}</span>
+              <button onClick={onLogout} className="btn-pro btn-odjava">ODJAVA</button>
+            </div>
+          ) : (
+            <Link to="/login" className="btn-pro btn-prijava">PRIJAVA</Link>
+          )}
+        </div>
+      </div>
+      
+      <div className="nav-bottom-line"></div>
+
+      {/* MODAL ZA KALKULATOR */}
+      {calcOpen && <HeaderKalkulator onClose={() => setCalcOpen(false)} />}
     </header>
   );
 };
