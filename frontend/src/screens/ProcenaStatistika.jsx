@@ -30,7 +30,7 @@ const ProcenaStatistika = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px', borderBottom: '2px solid #00bfa5', paddingBottom: '15px' }}>
         <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
           <button onClick={() => navigate(-1)} style={{ padding: '10px 18px', cursor: 'pointer', background: '#002b36', color: 'white', border: 'none', borderRadius: '4px', fontWeight: 'bold', transition: '0.2s' }}>← NAZAD</button>
-          <h2 style={{ margin: 0, color: '#002b36', letterSpacing: '0.5px' }}>📊 PROCENUALNA PROCENA REALIZACIJE</h2>
+          <h2 style={{ margin: 0, color: '#002b36', letterSpacing: '0.5px' }}>PROCENTUALNA PROCENA REALIZACIJE</h2>
         </div>
         <span style={{ fontSize: '14px', color: '#666', fontWeight: '600' }}>Inženjerski Dashboard v2.6</span>
       </div>

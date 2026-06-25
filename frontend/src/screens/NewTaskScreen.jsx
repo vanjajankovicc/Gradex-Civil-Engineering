@@ -19,7 +19,7 @@ const NewTaskScreen = () => {
   return (
     <Card className="shadow-sm border-0 max-width-form mx-auto mt-4" style={{ maxWidth: '600px' }}>
       <Card.Body className="p-4">
-        <h3 className="mb-4">📝 Unos novog građevinskog zadatka</h3>
+        <h3 className="mb-4"> Unos novog građevinskog zadatka</h3>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="taskName">
             <Form.Label>Naziv aktivnosti/radova</Form.Label>
